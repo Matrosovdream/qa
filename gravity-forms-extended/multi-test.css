@@ -1,0 +1,105 @@
+.gform_body .ginput_container_checkbox .gfield_checkbox input[type=checkbox]+label:before, 
+.gform_body .ginput_container_radio .gfield_radio input[type=radio]+label:before, 
+.gform_body .ginput_container_radio .gfield_radio .gchoice_label label:before {
+    content: '';
+    background: #dedede;
+    border: 1px solid #ccc;
+    display: inline-block;
+    vertical-align: middle;
+    width: 22px;
+    height: 22px;
+    padding: 2px;
+    margin-right: 10px;
+    text-align: center;
+	margin-top: -4px;
+}
+
+.gform_body .ginput_container_checkbox .gfield_checkbox input[type=checkbox]+label:before {
+    border-radius: 4px;
+}
+
+.gform_body .ginput_container_checkbox .gfield_checkbox input[type=checkbox]:checked+label:before {
+    content: "\2714";
+    font-weight: 700;
+    font-size: calc(16.923076923077px - 1px);
+    padding-top: 0;
+    color: #3a3a3a;
+}
+
+.gform_body .ginput_container_checkbox .gfield_checkbox input[type=checkbox], .fl-node-59a864128b266 .uabb-gf-style .gform_body .ginput_container_radio .gfield_radio input[type=radio] {
+    display: none;
+}
+
+.gform_next_button, .gform_previous_button, .gform_button {
+    cursor: pointer;
+    background: #00385b !important;
+    text-transform: uppercase !important;
+    min-width: 100px;
+    letter-spacing: 4px;
+    padding: 10px 30px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: "Open Sans Condensed","Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif; 
+	
+	min-height: 60px;
+    color: #fff;
+    font-weight: 100;
+}	
+
+.gf_step {
+    display: none;
+    min-height: 40px;
+    border-bottom: 3px solid #aaa;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin: 0 !important;
+    font-size: 18px !important;
+    font-family: "Open Sans Condensed","Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif !important;
+}
+
+.gf_step.gf_step_active {
+    color: #00385b;
+    border-bottom: 3px solid #00385b;
+	
+}
+
+.gform_wrapper .gf_step {
+	margin-right: 20px !important;
+}
+
+.entry-title {
+	display: none!important;
+}
+
+.page-content {
+	margin-top: 70px;
+}
+
+.gform_wrapper .gf_page_steps {
+	padding: 0 0 30px 0 !important;
+}
+
+.gform_wrapper .top_label .gfield_label {
+	font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.gform_wrapper .gfield_checkbox li label {
+    margin: 0;
+    font-size: 18px;
+}
+
+.gform_wrapper .gfield .gfield_description {
+	font-size: 15px;
+}
+
+.gform_heading {
+	display: none;
+}
+
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+.gform_next_button, .gform_previous_button, .gform_button {
+    cursor: pointer;
+    background: #00385b !important;
+    text-transform: uppercase !important;
+    min-width: 100px;
+    letter-spacing: 4px;
+    padding: 10px 30px !important;
+    border: none !important;
+    border-radius: 0 !important;
+    font-family: "Open Sans Condensed","Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif; 
+	
+	min-height: 60px;
+    color: #fff;
+    font-weight: 100;
+}	
+
+.gform_description {
+	font-size: 18px;
+}
+
+.entry-title {
+	display: none !important;
+}
+
+.gform_title {
+    font-weight: 700;
+    text-align: left;
+    font-size: 30px !important;
+    line-height: 1.2;
+    letter-spacing: 0px;
+    color: #333;
+    font-family: "Helvetica",Verdana,Arial,sans-serif;
+    /* font-weight: 400; */
+    font-style: normal;
+    text-transform: none;
+    margin: 50px 0 25px 0 !important;
+}
+
+.gform_wrapper .top_label .gfield_label {
+	font-size: 18px;
+    margin-bottom: 5px;
+}
+
+input.datepicker {
+	border-style: solid;
+    border-width: 0;
+    background-clip: border-box;
+    border-color: #ccc;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    padding: 15px!important;
+    background-color: #fafafa;
+}
+
+.validation_message {
+	font-size: 16px !important;
+    color: red !important;
+    margin-top: 15px !important;
+}
+
+.gform_wrapper li.gfield.gfield_error {
+	background-color: unset !important;
+}
+
+.gform_heading {
+	display: none;
+}
+
+
+
+
+
+.results-block {
+	
+}
+
+.results-block .block-top {
+	border-bottom: 2px solid #00385b;
+	margin-bottom: 17px;
+}
+
+.results-block h1 {
+	color: #00385b;
+    font-weight: 700;
+    text-align: left;
+    font-size: 36px;
+    line-height: 1.2;
+    letter-spacing: 0px;
+    font-family: "Open Sans Condensed",sans-serif;
+	
+	margin-top: 40px;
+}
+
+.results-block p {
+	font-family: "Open Sans",sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.45;
+}	
+
+.results-block h2 span {
+	
+}
+
+.results-block .blocks {
+	list-style: none;
+	margin-bottom: 70px;
+}
+
+.results-block .blocks .item {
+	float: left;
+	width: 50%;
+}
+
+.results-block .blocks .item:nth-child(2n) {
+	padding-left: 30px;
+}
+
+.results-block h2 {
+	font-weight: 700;
+    font-size: 20px !important;
+    font-family: "Open Sans Condensed","Open Sans","Helvetica Neue","Helvetica","Arial",sans-serif !important;
+    color: #00385b;
+    text-transform: uppercase;
+    padding: 10px 0;
+    margin: 30px 0 15px;
+    border-bottom: 1px dotted #333;
+}	
+
+.results-block h2 span {
+    display: block;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px;
+    padding: 8px;
+    text-align: center;
+    margin: 0 15px 0 0;
+	float: left;
+}
+
+.checklist-button {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 18px;
+    padding: 12px 24px;
+    text-decoration: none;
+    text-shadow: none;
+	
+	background: #00385b !important;
+    border: none;
+    color: #fff !important;
+}
+
+.form-header {
+	text-align: center;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.form-text {
+	text-align: center;
+}
+
+.form-hr {
+	margin: 30px 0;
+}
+
+select {
+	color: #333;
+    background-color: rgba(255,255,255,1);
+    border-width: 0;
+    border-color: #eee;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 12px!important;
+    text-align: left;
+    outline: none;
+}
+
+input[type="text"], input[type="email"], textarea {
+	color: #333;
+    background-color: rgba(255,255,255,1);
+    border-width: 0;
+    border-color: #eee;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    border-width: 1px;
+    border-style: solid;
+    padding: 12px!important;
+    text-align: left;
+    outline: none;
+}
+
+
+
+
+
