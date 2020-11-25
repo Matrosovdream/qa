@@ -111,7 +111,7 @@ function custom_validation( $validation_result ) {
 add_filter( 'gform_validation', 'gform_validation_func' );
 function gform_validation_func( $validation_result ) {
 	
-	/*echo "<br/>";
+	/*
 	echo "<br/>";
 	echo "<br/>";
 	echo "<br/>";
@@ -122,7 +122,17 @@ function gform_validation_func( $validation_result ) {
 	echo "<br/>";
 	echo "<br/>";
 	echo "<br/>";
-	echo "<br/>";*/
+	echo "<br/>";
+	echo "<br/>";
+	
+	
+	
+	echo "<pre>";
+	print_r( $validation_result['form']['confirmations'] );
+	echo "</pre>";
+	
+	die();
+	*/
 	
 	
 	$pages = $validation_result['form']['pagination']['pages'];
@@ -171,10 +181,18 @@ function gform_validation_func( $validation_result ) {
 		}	
 		
 		$query = http_build_query( $get );
-		$url = '/results/?'.$query;
+		$url = get_site_url().'/results/?'.$query;
 		
-		wp_redirect( $url );
-		exit();
+		foreach( $validation_result['form']['confirmations'] as $k=>$item ) {
+			$validation_result['form']['confirmations'][$k]['type'] = 'redirect';
+			$validation_result['form']['confirmations'][$k]['url'] = $url;
+		}
+		
+		
+		
+		
+		//wp_redirect( $url );
+		//exit();
 		
 	}
 

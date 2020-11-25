@@ -47,9 +47,11 @@ add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 		
 	}
 	
-	/*echo "<pre>";
-	print_r($qa_items);
-	echo "</pre>";*/
+	/*
+	echo "<pre>";
+	print_r($_GET);
+	echo "</pre>";
+	*/
 	
 	ob_start();
 	?> 
