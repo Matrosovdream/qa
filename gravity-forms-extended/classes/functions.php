@@ -74,3 +74,83 @@ function GetQA() {
 	
 	
 }
+
+
+function makeListRecommend( $result ) {
+	
+	$posts_raw = get_posts( array(
+		'numberposts' => -1,
+		'category'    => 0,
+		'orderby'     => 'date',
+		'order'       => 'DESC',
+		'post_type'   => 'qa_recommendations',
+	) );
+	
+	foreach( $posts_raw as $post ) {
+		$posts[ $post->post_title ] = $post->post_content;
+	}
+	
+	
+	foreach( $result as $key=>$tab ) {
+		
+		if( $tab['title'] == 'Finish' ) { continue; }
+		
+		foreach( $tab['choices'] as $key2=>$choice ) {
+			
+			if( $choice['checked'] ) {
+				
+				$text = $posts[ $choice['label'] ];
+				
+				if( $text ) {
+					$rows[ $tab['title'] ][ $choice['label'] ] = $text;
+				}
+				
+			}
+			
+		}
+		
+		$result[$key]['percent'] = round( $checked_amount / count( $tab['choices'] ) * 100 );
+		
+	}
+	
+	$html = '';
+	foreach( $rows as $block_title=>$items ) {
+		
+		$html .= "<h2 style='font-size: 25px;'> $block_title </h2>";
+		
+		foreach( $items as $item_title=>$item_text ) {
+			
+			$html .= "<h3 style='font-size: 21px;'> $item_title </h3>";
+			
+			$html .= "<p style='font-size: 17px;'> $item_text </p>";
+			
+		}
+		
+		$html .= "<br/>";
+		
+	}
+	
+	return $html;
+	
+	echo $html;
+	
+	
+	echo "<pre>";
+	print_r( $rows );
+	echo "</pre>";
+	
+	echo "<pre>";
+	print_r( $posts );
+	echo "</pre>";
+	
+	
+	
+}
+
+
+
+
+
+
+
+

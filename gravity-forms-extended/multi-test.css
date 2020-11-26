@@ -97,9 +97,25 @@
 	display: none;
 }
 
+.finish-top-text {
+    font-size: 20px;
+    background: #f9e665;
+    font-weight: 700;
+    padding-top: 25px!important;
+    padding: 25px;
+}
 
+.gfield_label_before_complex {
+	font-size: 20px;
+    font-weight: bold;
+}
 
-
-
-
+input[type="text"],
+input[type="tel"],
+input[type="email"] {
+    padding: 13px!important;
+    border-color: #bbb;
+    background: #fafafa;
+    font-size: 19px!important;
+}
 

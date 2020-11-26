@@ -1,15 +1,26 @@
 <?php
 add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 	
-	$colors['green'] = "#e18621";
-	$colors['orange'] = "#188134"; 
+	$colors['green'] = "#188134";
+	$colors['orange'] = "#e18621"; 
 	
 	$qa_items = GetQA();
 	
 	$results = $_GET['results'];
 	
 	
+	/*echo "<pre>";
+	print_r( $qa_items );
+	echo "</pre>";
+	
+	echo "<pre>";
+	print_r( $results );
+	echo "</pre>";*/
+	
+	
 	foreach( $results as $title=>$percent ) {
+		
+		if( strtolower($title) == 'finish' ) { continue; } 
 		
 		$info = $qa_items[ strtolower($title) ];
 		
@@ -20,7 +31,7 @@ add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 		if( $percent >= $info['bad_result_from'] && $percent <= $info['bad_result_to'] ) { 
 			$answer = 'bad';
 		}
-		
+
 		
 		if( $answer == 'good' ) {
 			

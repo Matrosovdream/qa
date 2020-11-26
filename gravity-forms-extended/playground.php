@@ -1,40 +1,47 @@
 <?php
-//do_action( 'gform_post_save_feed_settings', $result, $form_id, $settings, $this );
-
 // https://docs.gravityforms.com/category/developers/hooks/actions/submission/
 
-session_start();
 
-
-
+/*
 add_action( 'gform_enqueue_scripts_11', 'enqueue_styles_form_11', 11 );
 function enqueue_styles_form_11() {
 	wp_enqueue_style( 'choose-date.css', plugins_url('choose-date.css?t='.time(), __FILE__) );
-}
-
-add_action( 'gform_enqueue_scripts', 'enqueue_styles_form_test', 11 );
-function enqueue_styles_form_test() {
-	
-	global $post;
-	
-	$child_test_page = get_post_meta( $post->ID, 'child_test' )[0];
-	
-	if( $child_test_page ) {
-		wp_enqueue_style( 'multi-test.css', plugins_url('multi-test.css?t='.time(), __FILE__) );
-		//wp_dequeue_style( 'gforms_browsers_css' );
-	}
-	
 }
 
 add_action( 'gform_enqueue_scripts_12', 'enqueue_styles_form_12', 11 );
 function enqueue_styles_form_12() {
 	wp_enqueue_style( 'final-page.css', plugins_url('final-page.css?t='.time(), __FILE__) );
 }
+*/
 
 
-// multi-page validation
+add_action( 'gform_enqueue_scripts', 'enqueue_styles_form_test', 11 );
+function enqueue_styles_form_test() {
+	
+	global $post;
+	
+	$page_type = get_post_meta( $post->ID, 'page_type' )[0];
+	
+	if( $page_type == 'Choose date' ) {
+		wp_enqueue_style( 'choose-date.css', plugins_url('choose-date.css?t='.time(), __FILE__) );
+	}
+	if( $page_type == 'Multi-page test' ) {
+		wp_enqueue_style( 'multi-test.css', plugins_url('multi-test.css?t='.time(), __FILE__) );
+	}
+	if( $page_type == 'Final page' ) {
+		wp_enqueue_style( 'final-page.css', plugins_url('final-page.css?t='.time(), __FILE__) );
+	}
+	
+	
+}
+
+
+
+
+// QA validation
 add_filter( 'gform_validation_11', 'custom_validation' );
 function custom_validation( $validation_result ) {
+	
     $form = $validation_result['form'];
 	
 	$pages = GetAgePages();
@@ -111,28 +118,9 @@ function custom_validation( $validation_result ) {
 add_filter( 'gform_validation', 'gform_validation_func' );
 function gform_validation_func( $validation_result ) {
 	
-	/*
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
-	echo "<br/>";
 	
 	
 	
-	echo "<pre>";
-	print_r( $validation_result['form']['confirmations'] );
-	echo "</pre>";
-	
-	die();
-	*/
 	
 	
 	$pages = $validation_result['form']['pagination']['pages'];
@@ -167,6 +155,7 @@ function gform_validation_func( $validation_result ) {
 				if( $checked ) {
 					$result[$key]['choices'][$key2]['checked'] = 1;
 					$checked_amount++;
+					$checked_fields[] = $choice['label'];
 				}
 				
 			}
@@ -189,30 +178,48 @@ function gform_validation_func( $validation_result ) {
 		}
 		
 		
+		foreach( $validation_result['form']['notifications'] as $k=>$item ) {
+			
+			if( $item['name'] == 'User notification' ) {
+				
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				echo "<br/>";
+				
+				
+				$tips_html = makeListRecommend( $result );
+				
+				$validation_result['form']['notifications'][ $k ]['message'] = str_replace( '{TIPS}', $tips_html, $validation_result['form']['notifications'][ $k ]['message'] );
+
+				/*echo "<pre>";
+				print_r( $validation_result['form']['notifications'][ $k ]['message'] );
+				echo "</pre>";
+
+				echo $tips_html;
+				
+				die();*/
+				
+				
+			}
+				
 		
-		
-		//wp_redirect( $url );
-		//exit();
+		}	
 		
 	}
 
-	
-	
-	//Assign modified $form object back to the validation result
-    //$validation_result['form'] = $form;
     return $validation_result;
  
 }
 
-
-add_action('wp_footer', 'footer_func');
-function footer_func() {
-	
-	/*echo "<pre>";
-	print_r($_SESSION);
-	echo "</pre>";*/
-	
-}
 
 
 
