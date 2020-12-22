@@ -1,8 +1,8 @@
 <?php
 add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 	
-	$colors['green'] = "#188134";
-	$colors['orange'] = "#e18621"; 
+	$colors['orange'] = "#e18621";
+	$colors['green'] = "#188134"; 
 	
 	$qa_items = GetQA();
 	
@@ -11,9 +11,9 @@ add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 	
 	/*echo "<pre>";
 	print_r( $qa_items );
-	echo "</pre>";
+	echo "</pre>";*/
 	
-	echo "<pre>";
+	/*echo "<pre>";
 	print_r( $results );
 	echo "</pre>";*/
 	
@@ -31,11 +31,23 @@ add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 		if( $percent >= $info['bad_result_from'] && $percent <= $info['bad_result_to'] ) { 
 			$answer = 'bad';
 		}
+		
+		if( strtolower($title) == 'fine motor' ) {
+			
+			/*echo $answer;
+			
+			echo "<pre>";
+			print_r( $info );
+			echo "</pre>";*/
+			
+		}
+		
 
 		
 		if( $answer == 'good' ) {
 			
 			$blocks[] = array(
+						"result" => $answer,
 						"color" => $colors['green'],
 						"title" => $title,
 						"content" => $info['fields']['good_result_message'],
@@ -47,6 +59,7 @@ add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 		if( $answer == 'bad' ) {
 			
 			$blocks[] = array(
+						"result" => $answer,
 						"color" => $colors['orange'],
 						"title" => $title,
 						"content" => $info['fields']['bad_result_message'],
@@ -94,7 +107,9 @@ add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 							<? echo $item['content']; ?>
 						</p>
 						
-						<a class="checklist-button" href="<? echo $item['link']; ?>">Why get help now?</a>
+						<? if( $item['result'] == 'bad' ) { ?>
+							<a class="checklist-button" href="<? echo $item['link']; ?>">Why get help now?</a>
+						<? } ?>
 						
 					</div>
 				

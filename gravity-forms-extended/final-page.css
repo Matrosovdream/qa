@@ -116,6 +116,7 @@ input.datepicker {
 .results-block .blocks .item {
 	float: left;
 	width: 50%;
+	min-height: 240px;
 }
 
 .results-block .blocks .item:nth-child(2n) {

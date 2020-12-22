@@ -2,19 +2,6 @@
 // https://docs.gravityforms.com/category/developers/hooks/actions/submission/
 
 
-/*
-add_action( 'gform_enqueue_scripts_11', 'enqueue_styles_form_11', 11 );
-function enqueue_styles_form_11() {
-	wp_enqueue_style( 'choose-date.css', plugins_url('choose-date.css?t='.time(), __FILE__) );
-}
-
-add_action( 'gform_enqueue_scripts_12', 'enqueue_styles_form_12', 11 );
-function enqueue_styles_form_12() {
-	wp_enqueue_style( 'final-page.css', plugins_url('final-page.css?t='.time(), __FILE__) );
-}
-*/
-
-
 add_action( 'gform_enqueue_scripts', 'enqueue_styles_form_test', 11 );
 function enqueue_styles_form_test() {
 	
@@ -36,8 +23,6 @@ function enqueue_styles_form_test() {
 }
 
 
-
-
 // QA validation
 add_filter( 'gform_validation_11', 'custom_validation' );
 function custom_validation( $validation_result ) {
@@ -52,7 +37,7 @@ function custom_validation( $validation_result ) {
 	}	
 	
 	$min_age = round( min( $all_ages ) / 12 );
-	$max_age = round( max( $all_ages ) / 12 );
+	$max_age = round( max( $all_ages ) / 12 ) - 1;
 	if( $min_age == 0 ) { $min_age = 1; }
 	
 	/*echo "<pre>";
@@ -67,10 +52,15 @@ function custom_validation( $validation_result ) {
 		$date = $_POST['input_1'];
 		$diff = time() - strtotime( $date );
 		
-		$year_in_seconds = 365 * 24 * 60 * 60;
-		$years = round( $diff / $year_in_seconds );
+		$months = nb_mois( $date, date('m/d/Y') );
 		
-		$months = $years * 12;
+		/*$month_in_seconds = 2592000;
+		//$month_in_seconds = 31 * 24 * 60 * 60;
+		$months = round( $diff / $month_in_seconds );*/
+		
+		//echo $month_in_seconds;
+		
+		//$months = $years * 12;
 		
 		foreach( $pages as $page ) {
 			if( 
@@ -82,14 +72,23 @@ function custom_validation( $validation_result ) {
 			}
 		}
 		
-		/*print_r( $chosen_page );
-		echo $months;
+		/*echo $months; echo "<br/>";
+		
+		echo "<pre>";
+		print_r( $chosen_page );
+		echo "</pre>";
+		
 		die();*/
 		
 		if ( $chosen_page ) {
 			
-			wp_redirect( $chosen_page['link'] );
-			exit();
+			foreach( $validation_result['form']['confirmations'] as $k=>$item ) {
+				$validation_result['form']['confirmations'][$k]['type'] = 'redirect';
+				$validation_result['form']['confirmations'][$k]['url'] = $chosen_page['link'];
+			}
+			
+			//wp_redirect( $chosen_page['link'] );
+			//exit();
 
 		} else {
 			
@@ -100,7 +99,8 @@ function custom_validation( $validation_result ) {
 				//NOTE: replace 1 with the field you would like to validate
 				if ( $field->id == '1' ) {
 					$field->failed_validation = true;
-					$field->validation_message = 'Age should be from '.$min_age.' to '.$max_age.' years';
+					//$field->validation_message = 'Age should be from '.$min_age.' to '.$max_age.' years';
+					$field->validation_message = 'Аge should be from 1 month to 6 years old';
 					break;
 				}
 			}
@@ -118,11 +118,7 @@ function custom_validation( $validation_result ) {
 add_filter( 'gform_validation', 'gform_validation_func' );
 function gform_validation_func( $validation_result ) {
 	
-	
-	
-	
-	
-	
+
 	$pages = $validation_result['form']['pagination']['pages'];
 	$form_id = $_POST['gform_submit'];
 	$current_page = $_POST['gform_source_page_number_'.$form_id];
@@ -178,6 +174,7 @@ function gform_validation_func( $validation_result ) {
 		}
 		
 		
+		/*
 		foreach( $validation_result['form']['notifications'] as $k=>$item ) {
 			
 			if( $item['name'] == 'User notification' ) {
@@ -198,23 +195,17 @@ function gform_validation_func( $validation_result ) {
 				
 				$tips_html = makeListRecommend( $result );
 				
-				$validation_result['form']['notifications'][ $k ]['message'] = str_replace( '{TIPS}', $tips_html, $validation_result['form']['notifications'][ $k ]['message'] );
-
-				/*echo "<pre>";
-				print_r( $validation_result['form']['notifications'][ $k ]['message'] );
-				echo "</pre>";
-
-				echo $tips_html;
-				
-				die();*/
-				
+				//$validation_result['form']['notifications'][ $k ]['message'] = str_replace( '{TIPS}', $tips_html, $validation_result['form']['notifications'][ $k ]['message'] );
+				$validation_result['form']['notifications'][ $k ]['message'] = str_replace( '{TIPS}', '' );				
 				
 			}
 				
 		
 		}	
+		*/
 		
 	}
+	
 
     return $validation_result;
  

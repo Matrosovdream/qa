@@ -148,7 +148,21 @@ function makeListRecommend( $result ) {
 }
 
 
+function nb_mois($date1, $date2) {
+    $begin = new DateTime( $date1 );
+    $end = new DateTime( $date2 );
+    $end = $end->modify( '+1 month' );
 
+    $interval = DateInterval::createFromDateString('1 month');
+
+    $period = new DatePeriod($begin, $interval, $end);
+    $counter = 0;
+    foreach($period as $dt) {
+        $counter++;
+    }
+
+    return $counter;
+}
 
 
 
