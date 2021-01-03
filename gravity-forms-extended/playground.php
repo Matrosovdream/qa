@@ -19,6 +19,7 @@ function enqueue_styles_form_test() {
 		wp_enqueue_style( 'final-page.css', plugins_url('final-page.css?t='.time(), __FILE__) );
 	}
 	
+	wp_enqueue_script( 'gravity-forms-extended-script.js', plugins_url('gravity-forms-extended-script.js?t='.time(), __FILE__) );
 	
 }
 
@@ -58,10 +59,6 @@ function custom_validation( $validation_result ) {
 		//$month_in_seconds = 31 * 24 * 60 * 60;
 		$months = round( $diff / $month_in_seconds );*/
 		
-		//echo $month_in_seconds;
-		
-		//$months = $years * 12;
-		
 		foreach( $pages as $page ) {
 			if( 
 				$months >= $page['age_from'] &&
@@ -87,8 +84,8 @@ function custom_validation( $validation_result ) {
 				$validation_result['form']['confirmations'][$k]['url'] = $chosen_page['link'];
 			}
 			
-			//wp_redirect( $chosen_page['link'] );
-			//exit();
+			wp_redirect( $chosen_page['link'] );
+			exit();
 
 		} else {
 			

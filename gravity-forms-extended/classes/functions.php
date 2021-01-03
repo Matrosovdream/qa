@@ -46,7 +46,7 @@ function GetQA() {
 		'post_type'   => 'qa_results',
 	) );
 	
-	$fields = array( "good_result", "good_result_message", "bad_result", "bad_result_message", "get_help_link"  );
+	$fields = array( "good_result", "good_result_message", "bad_result", "bad_result_message", "get_help_text", "get_help_link"  );
 	
 	foreach( $pages as $page ) {
 		

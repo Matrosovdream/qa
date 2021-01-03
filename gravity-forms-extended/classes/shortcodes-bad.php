@@ -1,6 +1,5 @@
 <?php
-add_shortcode( 'site_url', 'site_url_func' );
-function site_url_func( $atts = null, $content = null ) {
+add_shortcode( 'site_url', function( $atts = null, $content = null ) {
 	
 	$colors['orange'] = "#e18621";
 	$colors['green'] = "#188134"; 
@@ -9,15 +8,15 @@ function site_url_func( $atts = null, $content = null ) {
 	
 	$results = $_GET['results'];
 	
-	/*
-	echo "<pre>";
-	print_r( $qa_items );
-	echo "</pre>";
 	
-	echo "<pre>";
+	/*echo "<pre>";
+	print_r( $qa_items );
+	echo "</pre>";*/
+	
+	/*echo "<pre>";
 	print_r( $results );
-	echo "</pre>";
-	*/
+	echo "</pre>";*/
+	
 	
 	foreach( $results as $title=>$percent ) {
 		
@@ -97,28 +96,28 @@ function site_url_func( $atts = null, $content = null ) {
 		
 			<div class="blocks">
 			
-				<?php foreach( $blocks as $item ) { ?>
+				<? foreach( $blocks as $item ) { ?>
 			
 					<div class="item">
 						
 						<h2>
-							<span class="yes" style="background: <?php echo $item['color']; ?>"></span>
-							<?php echo $item['title']; ?>
+							<span class="yes" style="background: <? echo $item['color']; ?>"></span>
+							<? echo $item['title']; ?>
 						</h2>
 						
 						<p>
-							<?php echo $item['content']; ?>
+							<? echo $item['content']; ?>
 						</p>
 						
-						<?php if( $item['result'] == 'bad' && trim( $item['get_help_text'] ) != '' ) { ?>
-							<a class="checklist-button" href="<?php echo $item['link']; ?>">
-								<?php echo $item['get_help_text']; ?>
+						<? if( $item['result'] == 'bad' && trim( $item['get_help_text'] ) != '' ) { ?>
+							<a class="checklist-button" href="<? echo $item['link']; ?>">
+								<? echo $item['get_help_text']; ?>
 							</a>
-						<?php } ?>
+						<? } ?>
 						
 					</div>
 				
-				<?php } ?>
+				<? } ?>
 				
 				<div style="clear: both;"></div>
 			
@@ -127,12 +126,12 @@ function site_url_func( $atts = null, $content = null ) {
 		
 		</div>
 	
-	<?php 
+	<? 
 	$content = ob_get_contents();
 
 	ob_end_clean();
 
 	return $content;
 
-}
-?>
+} );
+
